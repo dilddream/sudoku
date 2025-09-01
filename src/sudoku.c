@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "sdkset.h"
 
 
 int main(int argc, char *argv[]) {
@@ -19,23 +20,7 @@ int main(int argc, char *argv[]) {
 
 	
 
-	int sudoku[9][9] = {0,};
 	
-	while (1) {
-		int idx1, idx2, val;
-		int err = fscanf(file, "%d %d %d", &idx1, &idx2, &val);
-			
-		if (err != 3) {
-			printf("There is wrong data\n");
-			return 0;
-		}
-
-		if (err == EOF)
-			break;
-
-		sudoku[idx1][idx2] = val;
-	}
-
 
 
 	return 0;
