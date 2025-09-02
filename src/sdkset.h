@@ -1,6 +1,5 @@
-#ifndef _SUDOKU_SET_H
-#define _SUDOKU_SET_H
-
+#ifndef _SDKSET_H
+#define _SDKSET_H
 
 #include <stdbool.h>
 
@@ -17,6 +16,10 @@ int sdkset_size(sdkset *set);
 void sdkset_update(int idx1, int idx2, int num);
 
 
+
+
+
+// sdkset FUNCTIONs
 sdkset sdkset_create()
 {
 	sdkset set = 0x0000001111111110;
@@ -45,7 +48,12 @@ int sdkset_size(sdkset *set)
 }
 
 
-void 
+void sdkset_update(int idx1, int idx2, int num)
+{
+	sdkset_remove(row[idx1], num);
+	sdkset_remove(col[idx2], num);
+	sdkset_remove(box[idx1/3][idx2/3], num);
+}
 
+#endif	// _SDKSET_H
 
-#endif	// _SUDOKU_SET_H
