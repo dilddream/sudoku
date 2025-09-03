@@ -2,7 +2,7 @@
 #define _SDKIO_H_
 
 #include <stdio.h>
-#include "sdkboard.h"
+#include <stdlib.h>
 
 
 FILE *load_sudoku_from_file(const char *filename);
@@ -10,7 +10,7 @@ FILE *load_sudoku_from_file(const char *filename);
 
 FILE *load_sudoku_from_file(const char *filename)
 {
-	FILE *file = fopen(filename, "rw");
+	FILE *file = fopen(filename, "r");
 
 	if (!file) {
 		printf("Error: failed to open file.\n");

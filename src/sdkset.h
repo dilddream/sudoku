@@ -12,10 +12,9 @@ typedef struct {
 // sdkset APIs
 sdkset sdkset_create();
 void sdkset_remove(sdkset *set, int num);
+void sdkset_update(int idx1, int idx2, int num, sdk *sudoku);
 int sdkset_size(sdkset *set);
-void sdkset_update(int idx1, int idx2, int num);
-
-
+int sdkset_return(sdkset *set);
 
 
 
@@ -34,6 +33,14 @@ void sdkset_remove(sdkset *set, int num)
 }
 
 
+void sdkset_update(int idx1, int idx2, int num, sdk *sudoku)
+{
+	sdkset_remove(sudoku->row[idx1], num);
+	sdkset_remove(sudoku->col[idx2], num);
+	sdkset_remove(sudoku->box[3*(idx1/3)+(idx2/3)], num);
+
+}
+
 int sdkset_size(sdkset *set)
 {
 	int cnt;
@@ -47,12 +54,20 @@ int sdkset_size(sdkset *set)
 	return cnt;
 }
 
-
-void sdkset_update(int idx1, int idx2, int num)
+int sdkset_return(sdkset *set)
 {
-	sdkset_remove(row[idx1], num);
-	sdkset_remove(col[idx2], num);
-	sdkset_remove(box[idx1/3][idx2/3], num);
+	if (sdkset_size(set) != 1) return -1;
+	
+	int pos = 0;
+
+	uint16_t tmp_mask = set->mask;
+
+	while (tmp_mask & 1 == 0) {
+		tmp_mask >>= 1;
+		pos += 1;
+	}
+
+	return pos;
 }
 
 #endif	// _SDKSET_H

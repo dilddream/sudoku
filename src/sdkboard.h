@@ -2,7 +2,6 @@
 #define _SDKBOARD_H
 
 #include <stdio.h>
-#include "sdkset.h"
 
 
 typedef struct {
